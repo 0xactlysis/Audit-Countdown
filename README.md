@@ -1,4 +1,3 @@
-```markdown
 # Audit Countdown ⏱️
 
 A lightweight GNOME Shell extension that keeps critical deadlines and security audits visible directly in your desktop's top panel with a live, updating countdown timer.
@@ -28,7 +27,6 @@ A lightweight GNOME Shell extension that keeps critical deadlines and security a
    ```bash
    git clone git@github.com:0xactlysis/Audit-Countdown.git ~/.local/share/gnome-shell/extensions/audit-countdown@0xactlysis.github.io
 
-```
 
 2. Restart GNOME Shell:
 * **On X11:** Press `Alt + F2`, type `r`, and press `Enter`.
@@ -38,9 +36,6 @@ A lightweight GNOME Shell extension that keeps critical deadlines and security a
 3. Enable the extension using the `Extensions` app or via terminal:
 ```bash
 gnome-extensions enable audit-countdown@0xactlysis.github.io
-
-```
-
 
 
 ---
@@ -60,5 +55,3 @@ gnome-extensions pack audit-countdown@0xactlysis.github.io
 
 * JavaScript (ES6 Modules via GJS)
 * GNOME Shell St and Clutter UI libraries
-
-```
