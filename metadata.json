@@ -1,0 +1,6 @@
+{
+  "uuid": "audit-countdown@local",
+  "name": "Audit Countdown",
+  "description": "Real-time audit days and hours/minutes countdown indicator for top panel",
+  "shell-version": [ "45", "46", "47" ]
+}
