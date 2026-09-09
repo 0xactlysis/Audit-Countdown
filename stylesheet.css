@@ -1,32 +1,50 @@
 .audit-countdown-label {
     font-weight: bold;
+    color: #ffffff;
 }
 
-.audit-countdown-box {
-    padding: 5px 10px;
+.audit-section-box {
+    padding: 6px 10px;
+    width: 350px;
 }
 
-.time-input-row {
-    margin-top: 5px;
-}
-
-.time-entry {
-    width: 60px;
-}
-
-.time-separator {
+.audit-field-label {
+    font-size: 0.9em;
     font-weight: bold;
-    padding: 0 10px;
-    font-size: 1.2em;
+    color: #3584e4;
+    margin-top: 4px;
+}
+
+.audit-input-row {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.audit-entry-wide {
+    width: 330px;
+}
+
+.audit-entry-date {
+    width: 110px;
+}
+
+.audit-entry-time {
+    width: 65px;
+}
+
+.audit-entry-tz {
+    width: 80px;
 }
 
 .audit-countdown-button {
-    margin: 10px;
-    padding: 6px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    padding: 7px;
     background-color: #3584e4;
     color: white;
     border-radius: 6px;
     text-align: center;
+    font-weight: bold;
 }
 
 .audit-countdown-button:hover {
@@ -35,4 +53,68 @@
 
 .audit-countdown-button:active {
     background-color: #15539e;
+}
+
+.audit-cancel-button {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    margin-left: 6px;
+    padding: 7px 12px;
+    background-color: #e01b24;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.audit-cancel-button:hover {
+    background-color: #c01c28;
+}
+
+.audit-cancel-button:active {
+    background-color: #a21019;
+}
+
+.audit-danger-button {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 4px;
+    background-color: #e01b24;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.audit-danger-button:hover {
+    background-color: #c01c28;
+}
+
+.audit-results-box {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 8px;
+    margin-top: 6px;
+}
+
+.audit-scroll-wrapper {
+    height: 200px;
+}
+
+.audit-result-text {
+    font-size: 0.88em;
+    color: #e0e0e0;
+    margin-bottom: 2px;
+}
+
+.audit-result-highlight {
+    font-weight: bold;
+    color: #8ff0a4;
+}
+
+.audit-snapshot-item {
+    font-size: 0.85em;
+    color: #ffffff;
+    padding: 4px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
