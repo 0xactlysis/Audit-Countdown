@@ -1,71 +1,99 @@
 # Audit Countdown
 
-A GNOME Shell extension built for security auditors who want to track audit deadlines, measure their audit speed, and record when vulnerabilities are discovered — directly from the GNOME top panel.
+A GNOME Shell extension for security researchers who want to track audit time, deadlines, and vulnerability discovery directly from the top panel.
+
+> Built for auditors. Open to contributions.
+
+## Why?
+
+When auditing, it is useful to know not only **when the audit ends**, but also **how long you spent reaching a finding**.
+
+Audit Countdown provides a simple way to keep your audit deadline visible and record useful timing information while you work.
 
 ## Features
 
 ### Live Audit Countdown
 
-Displays the active audit and remaining time directly in the GNOME top panel.
+The active audit countdown is displayed directly in the GNOME top panel.
 
-The countdown updates every 5 seconds and shows:
+Example:
 
 ```text
-My Audit: 3d 8h 42m left
+Vault V2 Audit: 2d 8h 31m left
 ```
 
 When the deadline passes:
 
 ```text
-My Audit: Time is up!
+Vault V2 Audit: Time is up!
 ```
 
 When no audit is active:
 
 ```text
-Security Audit: No tracking active
+Vault V2 Audit: No tracking active
 ```
 
-### 1. Custom Schedule
+The countdown automatically updates while you work.
 
-Set your own audit start and end times.
+### Custom Schedule
 
-You can configure:
+Set an audit manually using:
 
 * Audit name
-* Start date and time
+* Start date
+* Start time
 * Start timezone
-* End date and time
+* End date
+* End time
 * End timezone
 
-The extension accepts IANA timezones such as `Africa/Lagos`, as well as `UTC`/`GMT` and `WAT`.
+Timezones can be specified using IANA timezone identifiers such as:
 
-### 2. Auto Schedule
+```text
+Africa/Lagos
+America/New_York
+Europe/London
+UTC
+```
 
-Useful for audit contests with a fixed duration.
+`WAT` is also supported as an alias for `Africa/Lagos`.
 
-Enter the contest's original start and end times, then select **Start Auto Audit Now**.
+### Auto Schedule
 
-The extension:
+Useful for reproducing the time limit of an audit contest during practice.
 
-1. Calculates the original contest duration.
-2. Records the time you started your audit on your machine.
-3. Creates a new deadline using that same duration.
-4. Starts the live countdown automatically.
+Enter the original contest start and end times, then select:
 
-This lets you reproduce the contest's time limit even when you're starting your practice audit later.
+**Start Auto Audit Now**
 
-### 3. Submission Comparison
+The extension calculates the original contest duration and starts a new local audit using that same duration.
 
-Compare your audit speed against another researcher's submission time.
+For example:
+
+```text
+Original contest:
+Start: 2026-09-01 10:00 UTC
+End:   2026-09-15 10:00 UTC
+
+Your practice:
+Start: now
+End:   now + 14 days
+```
+
+This makes it easier to run practice audits under the same time constraint.
+
+### Submission Comparison
+
+Compare your submission time with another researcher's submission.
 
 Enter:
 
-* Original contest start time
-* Other researcher's submission time
+* Original contest start
+* Their submission time
 * Your submission time
 
-The extension calculates each elapsed duration and tells you whether you were faster, slower, or took the same amount of time.
+The extension calculates the elapsed time for each submission and shows whether you were faster, slower, or took the same amount of time.
 
 Example:
 
@@ -76,19 +104,21 @@ Your Elapsed Time: 1d 18h 32m
 Result: You were 9h 38m FASTER.
 ```
 
-This is useful for tracking how quickly you reach a finding and submit it compared with other researchers.
+This can be useful for tracking how quickly you reach and submit findings.
 
-### 4. Vulnerability Snapshots
+### Vulnerability Snapshots
 
-Record the exact time you discover a vulnerability.
+Record the moment you discover a vulnerability.
 
-Enter a vulnerability name or bug ID and press **Take Snapshot (Now)**.
+Enter a vulnerability name or bug ID and select:
 
-Each snapshot stores:
+**Take Snapshot (Now)**
 
-* Vulnerability name
+Each snapshot records:
+
+* Vulnerability name / bug ID
 * Discovery timestamp
-* Elapsed time since your active audit started
+* Elapsed time from the active audit start
 
 The snapshot is also copied to the clipboard in a report-friendly format:
 
@@ -96,17 +126,48 @@ The snapshot is also copied to the clipboard in a report-friendly format:
 [SNAPSHOT] Reentrancy in withdraw() | Time: 2026-09-10 14:30 UTC | Elapsed: 5h 20m
 ```
 
-Snapshots persist between restarts and can be cleared from the extension menu.
+Snapshots are kept locally and remain available after restarting GNOME Shell.
 
-## Persistent Local Storage
+### Local Persistence
 
-Audit settings, active countdown state, submission data, and vulnerability snapshots are stored locally in:
+Audit settings, active audit timing, submission comparison data, and vulnerability snapshots are saved locally.
+
+The configuration file is:
 
 ```text
 ~/.config/audit-countdown.json
 ```
 
-No external service or account is required. The extension uses GNOME's GLib/Gio APIs for local configuration storage.
+No account or external service is required.
+
+## Installation
+
+### Manual Installation
+
+Clone the repository into your GNOME extensions directory:
+
+```bash
+git clone https://github.com/0xactlysis/Audit-Countdown.git \
+  ~/.local/share/gnome-shell/extensions/audit-countdown@0xactlysis.github.io
+```
+
+Enable the extension:
+
+```bash
+gnome-extensions enable audit-countdown@0xactlysis.github.io
+```
+
+You can also enable it through the GNOME Extensions application.
+
+### Restarting GNOME Shell
+
+On X11:
+
+```text
+Alt + F2 → r → Enter
+```
+
+On Wayland, log out and log back in.
 
 ## Requirements
 
@@ -114,56 +175,57 @@ No external service or account is required. The extension uses GNOME's GLib/Gio 
 * GNOME Shell 46
 * GNOME Shell 47
 
-The supported versions are declared in the extension metadata.
-
-## Installation
-
-### Manual Installation
-
-Clone the repository directly into your local GNOME extensions directory:
-
-```bash
-git clone https://github.com/0xactlysis/Audit-Countdown.git \
-  ~/.local/share/gnome-shell/extensions/audit-countdown@0xactlysis.github.io
-```
-
-Then enable the extension:
-
-```bash
-gnome-extensions enable audit-countdown@0xactlysis.github.io
-```
-
-You can also enable it through the GNOME **Extensions** application.
-
-After installing or updating the extension, restart GNOME Shell or log out and back in as appropriate for your session.
-
 ## Packaging
 
-To create a distributable GNOME extension package, run:
+To create a GNOME extension package for distribution:
 
 ```bash
 gnome-extensions pack audit-countdown@0xactlysis.github.io
 ```
 
-Run the command from the directory containing the extension folder.
+Run this command from the directory containing the extension folder.
 
-## How It Works
+## Development
 
-The extension is implemented as a GNOME Shell panel indicator using GJS, St, Clutter, GLib, and Gio.
+The extension is written in JavaScript using GJS and GNOME Shell APIs.
 
-The countdown is recalculated from the current local system time every 5 seconds. Audit state and snapshots are serialized to a local JSON configuration file and restored when the extension starts.
-
-## Built With
+Main technologies:
 
 * JavaScript
 * GJS
-* GNOME Shell APIs
 * GLib
 * Gio
 * St
 * Clutter
+* GNOME Shell PanelMenu / PopupMenu APIs
+
+## Contributing
+
+Audit Countdown is an early-stage open-source project, and contributions are welcome.
+
+Useful contributions include:
+
+* Bug fixes
+* GNOME version compatibility
+* UI/UX improvements
+* Better validation and error handling
+* New audit-time tracking features
+* Testing
+* Documentation improvements
+* Feature ideas from other auditors
+
+Open an issue before making a large change so the approach can be discussed.
+
+Pull requests are welcome.
+
+## Project Status
+
+This project is actively usable but still evolving.
+
+It was originally built to solve a personal audit workflow problem and is now being open-sourced so other security researchers can use it, find problems, and help improve it.
+
+Expect rough edges, missing features, and opportunities for improvement.
 
 ## License
-MIT License
 
-## COntributions are allowed Please!
+MIT License
