@@ -56,4 +56,4 @@ gnome-extensions pack audit-countdown@0xactlysis.github.io
 * JavaScript (ES6 Modules via GJS)
 * GNOME Shell St and Clutter UI libraries
 
-Please feel free to contribute
+### Please feel free to contribute
